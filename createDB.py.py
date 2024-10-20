@@ -1,5 +1,5 @@
 from llama_index.core import SimpleDirectoryReader
-documents=SimpleDirectoryReader(input_files=['Cambridge International AS  A Level Business Coursebook  4th edition (Peter Stimpson, Alastair Farquharson) (z-lib.org) (1).pdf']).load_data()
+documents=SimpleDirectoryReader(input_files=['FILES TO TRAIN HERE']).load_data()
 
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 embed_model=HuggingFaceEmbedding()
@@ -19,22 +19,3 @@ index=VectorStoreIndex.from_documents(documents,
 
 
 
-db2=chromadb.PersistentClient(path='./paul_chromadb')
-chroma_coll=db2.get_or_create_collection('paul_collection')
-
-vector_store=ChromaVectorStore(chroma_collection=chroma_coll)
-
-index=VectorStoreIndex.from_vector_store(
-    vector_store,
-    embed_model=embed_model
-)
-
-
-from llama_index.llms.ollama import Ollama
-llm = Ollama(model="llama3.2", request_timeout=420.0)
-
-query_engine=index.as_query_engine(llm=llm)
-
-resp=query_engine.query('wht is the difference between a public sector and private sector')
-
-print(resp)
