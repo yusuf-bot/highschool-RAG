@@ -11,7 +11,7 @@ from llama_index.core import StorageContext
 embed_model = HuggingFaceEmbedding()
 documents = SimpleDirectoryReader(
     input_files=[
-        "Cambridge International AS  A Level Business Coursebook  4th edition (Peter Stimpson, Alastair Farquharson) (z-lib.org) (1).pdf"
+        "books/Cambridge International AS  A Level Business Coursebook  4th edition (Peter Stimpson, Alastair Farquharson) (z-lib.org) (1).pdf"
     ]
 ).load_data()
 
